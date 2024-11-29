@@ -5,12 +5,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --secondary: #FE705A;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #121F28;
     --foreground: #EDEDED;
+    --secondary: #FE705A;
   }
 }
 
@@ -18,4 +20,45 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.status-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.status {
+  width: 8px; /* Original width */
+  height: 8px; /* Original height */
+  background-color: #22c55e; /* Solid green */
+  border-radius: 50%; /* Make it a circle */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.pulse {
+  width: 16px; /* Larger size for the pulse */
+  height: 16px;
+  background-color: #22c55e; /* Same green color */
+  opacity: 0.4; /* Reduced opacity for a lighter shade */
+  border-radius: 50%;
+  position: absolute;
+  top: -4px; /* Center the pulse */
+  left: -4px;
+  z-index: 1;
+  animation: pulseEffect 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseEffect {
+  0%, 100% {
+    transform: scale(1); /* Initial size */
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.5); /* Pulse size */
+    opacity: 0.2; /* Lighter shade during pulse */
+  }
 }
